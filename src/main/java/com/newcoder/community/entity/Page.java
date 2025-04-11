@@ -10,6 +10,8 @@ package com.newcoder.community.entity;
  * @create 2025/4/4 17:58
  */
 
+import org.springframework.stereotype.Component;
+
 /**
  * 封装分页相关信息
  */
