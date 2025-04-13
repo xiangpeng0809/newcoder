@@ -1,5 +1,7 @@
 package com.newcoder.community.entity;
 
+import java.util.Date;
+
 /**
  * ClassName: User
  * Package: com.newcoder.community.entity
@@ -15,11 +17,11 @@ public class User {
     private String password;
     private String salt;
     private String email;
-    private String type;
-    private String status;
+    private int type;
+    private int status;
     private String activationCode;
     private String headerUrl;
-    private String createTime;
+    private Date createTime;
 
     public int getId() {
         return id;
@@ -61,19 +63,19 @@ public class User {
         this.email = email;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -93,11 +95,11 @@ public class User {
         this.headerUrl = headerUrl;
     }
 
-    public String getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
