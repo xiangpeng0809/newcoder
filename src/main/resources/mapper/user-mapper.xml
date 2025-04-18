@@ -17,11 +17,15 @@
     </select>
 
     <select id="selectByName" resultType="User">
-        select * from user where username = #{username}
+        select <include refid="selectFields"/>
+        from user
+        where username = #{username}
     </select>
 
     <select id="selectByEmail" resultType="User">
-        select * from user where email = #{email}
+        select <include refid="selectFields"/>
+        from user
+        where email = #{email}
     </select>
 
     <insert id="insertUser" parameterType="User" keyProperty="id">
