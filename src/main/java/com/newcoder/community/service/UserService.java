@@ -151,7 +151,6 @@ public class UserService implements CommunityConstant {
 
         // 验证账号
         User user = userMapper.selectByName(username);
-        System.out.println(user);
         if (user == null) {
             map.put("usernameMsg", "该账号不存在！");
             return map;
@@ -189,5 +188,10 @@ public class UserService implements CommunityConstant {
     // 查询凭证
     public LoginTicket findLoginTicket(String ticket) {
         return loginTicketMapper.selectLoginTicketByTicket(ticket);
+    }
+
+    // 更新头像
+    public int updateHeader(int userId, String headerUrl) {
+        return userMapper.updateHeader(userId, headerUrl);
     }
 }
