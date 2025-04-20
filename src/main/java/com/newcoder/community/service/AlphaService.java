@@ -22,7 +22,7 @@ public class AlphaService {
 
     @PostConstruct
     public void init() {
-        System.out.println("AlphaService");
+
     }
 
     public String find(){
