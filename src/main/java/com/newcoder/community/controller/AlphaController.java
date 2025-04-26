@@ -1,6 +1,7 @@
 package com.newcoder.community.controller;
 
 import com.newcoder.community.service.AlphaService;
+import com.newcoder.community.util.CommunityUtil;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -94,4 +95,12 @@ public class AlphaController {
         return list;
     }
 
+    // ajax示例
+    @RequestMapping(path = "/ajax",method = RequestMethod.POST)
+    @ResponseBody
+    public String testAjax(String name, int age) {
+        System.out.println(name);
+        System.out.println(age);
+        return CommunityUtil.getJSONString(0,"操作成功");
+    }
 }
