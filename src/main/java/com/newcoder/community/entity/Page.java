@@ -74,11 +74,8 @@ public class Page {
      * @return
      */
     public int getTotal() {
-        if (rows % limit == 0) {
-            return rows * limit;
-        } else {
-            return rows / limit + 1;
-        }
+        if (rows == 0) return 1;
+        return (rows + limit - 1) / limit; // 向上取整写法
     }
 
     /**
@@ -94,8 +91,9 @@ public class Page {
      * 获取结束页码
      * @return
      */
-    public int getTo(){
+    public int getTo() {
         int to = current + 2;
-        return to < rows ? to : rows;
+        int total = getTotal(); // 用总页数来截断
+        return to > total ? total : to;
     }
 }
