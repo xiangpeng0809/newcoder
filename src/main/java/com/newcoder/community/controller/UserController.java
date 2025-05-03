@@ -2,6 +2,7 @@ package com.newcoder.community.controller;
 
 import com.newcoder.community.annotation.LoginRequired;
 import com.newcoder.community.entity.User;
+import com.newcoder.community.service.LikeService;
 import com.newcoder.community.service.UserService;
 import com.newcoder.community.util.CommunityUtil;
 import com.newcoder.community.util.HostHolder;
@@ -54,6 +55,9 @@ public class UserController {
 
     @Autowired
     private HostHolder hostHolder;
+
+    @Autowired
+    private LikeService likeService;
 
     @LoginRequired
     @RequestMapping(path = "/setting", method = RequestMethod.GET)
@@ -118,4 +122,20 @@ public class UserController {
 
     }
 
+    // 个人主页
+    @RequestMapping(path = "/profile/{userId}", method = RequestMethod.GET)
+    public String getProfilePage(@PathVariable("userId") int userId, Model model) {
+        User user = userService.finderUserById(userId);
+        if (user == null) {
+            throw new RuntimeException("该用户不存在");
+        }
+
+        // 用户
+        model.addAttribute("user", user);
+        // 点赞数量
+        int LikeCount = likeService.findUserLikeCount(userId);
+        model.addAttribute("LikeCount", LikeCount);
+
+        return "/site/profile";
+    }
 }
