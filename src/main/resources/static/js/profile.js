@@ -12,7 +12,7 @@ function follow() {
 			function(data) {
 				data=$.parseJSON(data);
 				if (data.code == 0) {
-					windows.location.reload();
+					window.location.reload();
 				} else {
 					alert(data.msg);
 				}
@@ -27,7 +27,7 @@ function follow() {
 			function(data) {
 				data=$.parseJSON(data);
 				if (data.code == 0) {
-					windows.location.reload();
+					window.location.reload();
 				} else {
 					alert(data.msg);
 				}
