@@ -173,6 +173,5 @@ public class ElasticsearchTests {
             for (DiscussPost post : resultPage) {
                 System.out.println(post);
             }
-
-    }
+        }
 }
