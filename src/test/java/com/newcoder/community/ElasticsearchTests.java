@@ -165,7 +165,7 @@ public class ElasticsearchTests {
         // 封装为 Page 对象（Spring 的 PageImpl）
             Page<DiscussPost> resultPage = new PageImpl<>(posts, PageRequest.of(page, size), totalHits);
 
-        // 使用方式跟你原来的 Page<DiscussPost> 一样
+
             System.out.println(resultPage.getTotalElements());
             System.out.println(resultPage.getTotalPages());
             System.out.println(resultPage.getNumber());
