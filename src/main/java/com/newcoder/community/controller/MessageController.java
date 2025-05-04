@@ -60,7 +60,7 @@ public class MessageController implements CommunityConstant {
                 map.put("letterCount", messageService.findLettersCount(message.getConversationId()));
                 map.put("unreadCount", messageService.findLetterUnreadCount(user.getId(), message.getConversationId()));
                 int targetId = user.getId() == message.getFromId() ? message.getToId() : message.getFromId();
-                map.put("target", userService.finderUserById(targetId));
+                map.put("target", userService.findUserById(targetId));
 
                 conversations.add(map);
             }
@@ -90,7 +90,7 @@ public class MessageController implements CommunityConstant {
             for (Message message : letterList) {
                 Map<String, Object> map = new HashMap<>();
                 map.put("letter", message);
-                map.put("fromUser", userService.finderUserById(message.getFromId()));
+                map.put("fromUser", userService.findUserById(message.getFromId()));
                 letters.add(map);
             }
         }
@@ -114,9 +114,9 @@ public class MessageController implements CommunityConstant {
         int d1 = Integer.parseInt(ids[1]);
 
         if (hostHolder.getUser().getId() == d0) {
-            return userService.finderUserById(d1);
+            return userService.findUserById(d1);
         } else {
-            return userService.finderUserById(d0);
+            return userService.findUserById(d0);
         }
     }
 
@@ -169,7 +169,7 @@ public class MessageController implements CommunityConstant {
             String content = HtmlUtils.htmlUnescape(message.getContent());
             Map<String, Object> data = JSONObject.parseObject(content, HashMap.class);
 
-            messageVo.put("user",userService.finderUserById((Integer) data.get("userId")));
+            messageVo.put("user",userService.findUserById((Integer) data.get("userId")));
             messageVo.put("entityType",data.get("entityType"));
             messageVo.put("entityId",data.get("entityId"));
             messageVo.put("postId",data.get("postId"));
@@ -193,7 +193,7 @@ public class MessageController implements CommunityConstant {
             String content = HtmlUtils.htmlUnescape(message.getContent());
             Map<String, Object> data = JSONObject.parseObject(content, HashMap.class);
 
-            messageVo.put("user",userService.finderUserById((Integer) data.get("userId")));
+            messageVo.put("user",userService.findUserById((Integer) data.get("userId")));
             messageVo.put("entityType",data.get("entityType"));
             messageVo.put("entityId",data.get("entityId"));
             messageVo.put("postId",data.get("postId"));
@@ -217,7 +217,7 @@ public class MessageController implements CommunityConstant {
             String content = HtmlUtils.htmlUnescape(message.getContent());
             Map<String, Object> data = JSONObject.parseObject(content, HashMap.class);
 
-            messageVo.put("user",userService.finderUserById((Integer) data.get("userId")));
+            messageVo.put("user",userService.findUserById((Integer) data.get("userId")));
             messageVo.put("entityType",data.get("entityType"));
             messageVo.put("entityId",data.get("entityId"));
 
@@ -258,12 +258,12 @@ public class MessageController implements CommunityConstant {
                 // 内容
                 String content = HtmlUtils.htmlUnescape(notice.getContent());
                 Map<String, Object> data = JSONObject.parseObject(content, HashMap.class);
-                noticeVo.put("user",userService.finderUserById((Integer) data.get("userId")));
+                noticeVo.put("user",userService.findUserById((Integer) data.get("userId")));
                 noticeVo.put("entityType",data.get("entityType"));
                 noticeVo.put("entityId",data.get("entityId"));
                 noticeVo.put("postId",data.get("postId"));
                 // 通知的作者
-                noticeVo.put("fromUser",userService.finderUserById(notice.getFromId()));
+                noticeVo.put("fromUser",userService.findUserById(notice.getFromId()));
 
                 noticeVolist.add(noticeVo);
             }

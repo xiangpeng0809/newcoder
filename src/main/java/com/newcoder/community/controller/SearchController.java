@@ -52,7 +52,7 @@ public class SearchController implements CommunityConstant {
                 // 帖子
                 map.put("post", post);
                 // 作者
-                map.put("user",userService.finderUserById(post.getUserId()));
+                map.put("user",userService.findUserById(post.getUserId()));
                 // 点赞数量
                 map.put("likeCount", likeService.findEntityLikeCount(ENTITY_TYPE_POST, post.getId()));
 

@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 import java.util.Map;
 
-import static com.newcoder.community.util.CommunityConstant.ENTITY_TYPE_USER;
-
 /**
  * ClassName: FollowController
  * Package: com.newcoder.community.controller
@@ -61,7 +59,7 @@ public class FollowController implements CommunityConstant {
                 .setEntityId(entityId)
                 .setEntityUserId(entityId);
         eventProducer.fireEvent(event);
-        
+
         return CommunityUtil.getJSONString(0,"已关注");
     }
 
@@ -77,7 +75,7 @@ public class FollowController implements CommunityConstant {
 
     @RequestMapping(path = "/followees/{userId}", method = RequestMethod.GET)
     public String getFollowees(@PathVariable("userId") int userId, Model model, Page page) {
-        User user = userService.finderUserById(userId);
+        User user = userService.findUserById(userId);
         if (user == null) {
             throw new RuntimeException("该用户不存在");
         }
@@ -101,7 +99,7 @@ public class FollowController implements CommunityConstant {
 
     @RequestMapping(path = "/followers/{userId}", method = RequestMethod.GET)
     public String getFollowers(@PathVariable("userId") int userId, Model model, Page page) {
-        User user = userService.finderUserById(userId);
+        User user = userService.findUserById(userId);
         if (user == null) {
             throw new RuntimeException("该用户不存在");
         }

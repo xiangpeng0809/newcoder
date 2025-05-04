@@ -83,7 +83,7 @@ public class DiscussPostController implements CommunityConstant {
         DiscussPost post = discussPostService.findDiscussPostById(discussPostId);
         model.addAttribute("post", post);
         // 作者
-        User user = userService.finderUserById(post.getUserId());
+        User user = userService.findUserById(post.getUserId());
         model.addAttribute("user", user);
         // 点赞数量
         long likeCount = likeService.findEntityLikeCount(ENTITY_TYPE_POST, discussPostId);
@@ -111,7 +111,7 @@ public class DiscussPostController implements CommunityConstant {
                 // 评论
                 commentVo.put("comment", comment);
                 // 作者
-                commentVo.put("user",userService.finderUserById(comment.getUserId()));
+                commentVo.put("user",userService.findUserById(comment.getUserId()));
                 // 点赞数量
                 likeCount = likeService.findEntityLikeCount(ENTITY_TYPE_COMMENT, comment.getId());
                 commentVo.put("likeCount", likeCount);
@@ -130,9 +130,9 @@ public class DiscussPostController implements CommunityConstant {
                         // 回复
                         replyVo.put("reply", reply);
                         // 作者
-                        replyVo.put("user",userService.finderUserById(reply.getUserId()));
+                        replyVo.put("user",userService.findUserById(reply.getUserId()));
                         // 回复目标
-                        User target = reply.getTargetId() == 0 ? null : userService.finderUserById(reply.getTargetId());
+                        User target = reply.getTargetId() == 0 ? null : userService.findUserById(reply.getTargetId());
                         replyVo.put("target", target);
                         // 点赞数量
                         likeCount = likeService.findEntityLikeCount(ENTITY_TYPE_COMMENT, reply.getId());
