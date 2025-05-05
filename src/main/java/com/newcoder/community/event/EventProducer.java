@@ -2,7 +2,6 @@ package com.newcoder.community.event;
 
 import com.alibaba.fastjson.JSONObject;
 import com.newcoder.community.entity.Event;
-import io.lettuce.core.json.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;

@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 import java.io.PrintWriter;
 
 /**
@@ -50,7 +49,19 @@ public class SecurityConfig implements CommunityConstant {
                         "/like",
                         "/follow",
                         "/unfollow"
-                ).hasAnyAuthority(AUTHORITY_USER, AUTHORITY_MODERATOR, AUTHORITY_ADMIN)
+                ).hasAnyAuthority(
+                        AUTHORITY_USER,
+                        AUTHORITY_MODERATOR,
+                        AUTHORITY_ADMIN
+                    )
+                .requestMatchers("/discuss/top","/discuss/good")
+                    .hasAnyAuthority(
+                        AUTHORITY_MODERATOR,
+                        AUTHORITY_ADMIN
+                    )
+                .requestMatchers("/discuss/delete").hasAuthority(
+                        AUTHORITY_ADMIN
+                    )
                 .anyRequest().permitAll()
             ).csrf((csrf)-> csrf.disable())
         // 权限不够时处理
