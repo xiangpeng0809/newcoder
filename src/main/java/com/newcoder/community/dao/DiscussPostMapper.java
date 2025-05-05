@@ -25,7 +25,7 @@ public interface DiscussPostMapper {
      * @param limit 每页最多多少个数据
      * @return 已发布的所有数据
      */
-    List<DiscussPost> selectDiscussPosts(int userId, int offset, int limit);
+    List<DiscussPost> selectDiscussPosts(int userId, int offset, int limit, int orderMode);
 
     /**
      *
@@ -45,4 +45,6 @@ public interface DiscussPostMapper {
     int updateType(int id, int type);
 
     int updateStatus(int id, int status);
+
+    int updateScore(int id, double score);
 }
