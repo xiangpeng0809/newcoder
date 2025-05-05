@@ -166,7 +166,6 @@ public class LoginController {
     @RequestMapping(path="/logout", method = RequestMethod.GET)
     public String logout(@CookieValue("ticket") String ticket) {
         userService.logout(ticket);
-//        SecurityContextHolder.clearContext();
         return "redirect:/login";
     }
 }

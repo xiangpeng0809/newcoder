@@ -1,6 +1,20 @@
 package com.newcoder.community.config;
 
 
+import com.newcoder.community.filter.LoginTicketFilter;
+import com.newcoder.community.util.CommunityConstant;
+import com.newcoder.community.util.CommunityUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import java.io.PrintWriter;
+
 /**
  * ClassName: SecurityConfig
  * Package: com.newcoder.community.config
@@ -10,10 +24,12 @@ package com.newcoder.community.config;
  * @version 1.0
  * @create 2025/5/4 18:03
  */
-/*
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig implements CommunityConstant {
+
+    @Autowired
+    private LoginTicketFilter loginTicketFilter;
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
@@ -25,20 +41,16 @@ public class SecurityConfig implements CommunityConstant {
         http
             .authorizeHttpRequests((auth) -> auth
                 .requestMatchers(
-                    "/user/setting",
-                    "/user/upload",
-                    "/discuss/add",
-                    "/comment/add/**",
-                    "/letter/**",
-                    "/notice/**",
-                    "/like",
-                    "/follow",
-                    "/unfollow"
-                ).hasAnyAuthority(
-                        AUTHORITY_ADMIN,
-                        AUTHORITY_MODERATOR,
-                        AUTHORITY_USER
-                    )
+                        "/user/setting",
+                        "/user/upload",
+                        "/discuss/add",
+                        "/comment/add/**",
+                        "/letter/**",
+                        "/notice/**",
+                        "/like",
+                        "/follow",
+                        "/unfollow"
+                ).hasAnyAuthority(AUTHORITY_USER, AUTHORITY_MODERATOR, AUTHORITY_ADMIN)
                 .anyRequest().permitAll()
             ).csrf((csrf)-> csrf.disable())
         // 权限不够时处理
@@ -68,8 +80,9 @@ public class SecurityConfig implements CommunityConstant {
         )
         // Security底层默认会拦截/logout请求，进行推出处理
         // 覆盖它默认的逻辑，才能执行我们自己的退出代码
-            .logout((logout) -> logout.logoutUrl("/securityLogout"));
+            .logout((logout) -> logout.logoutUrl("/securityLogout"))
+                .addFilterBefore(loginTicketFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
-}*/
+}
