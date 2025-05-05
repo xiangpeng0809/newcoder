@@ -43,7 +43,7 @@ public class MapperTests {
 
     @Test
     public void testSelectUser(){
-        User user = userMapper.selectById(101);
+        User user = userMapper.selectById(154);
         System.out.println(user);
 
     }

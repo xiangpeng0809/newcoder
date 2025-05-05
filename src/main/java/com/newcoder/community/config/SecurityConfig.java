@@ -59,7 +59,7 @@ public class SecurityConfig implements CommunityConstant {
                         AUTHORITY_MODERATOR,
                         AUTHORITY_ADMIN
                     )
-                .requestMatchers("/discuss/delete").hasAuthority(
+                .requestMatchers("/discuss/delete","/data/**").hasAuthority(
                         AUTHORITY_ADMIN
                     )
                 .anyRequest().permitAll()
